@@ -1,0 +1,27 @@
+{
+  "name": "vue-cli-plugin-ui-karma",
+  "description": "vue-cli 3.x ui plugin to add Karma to your Vue Project",
+  "author": "1600133971",
+  "version": "0.1.0",
+  "main": "index.js",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/1600133971/vue-cli-plugin-ui-karma.git"
+  },
+  "homepage": "https://github.com/1600133971/vue-cli-plugin-ui-karma#readme",
+  "dependencies": {
+    "babel-loader": "^8.0.4",
+    "istanbul-instrumenter-loader": "^3.0.1",
+    "jasmine-core": "^3.3.0",
+    "karma": "^3.1.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage": "^1.1.2",
+    "karma-coverage-istanbul-reporter": "^2.0.4",
+    "karma-jasmine": "^2.0.0",
+    "karma-webpack": "^3.0.5",
+    "url-loader": "^1.1.2",
+    "vue-loader": "^15.4.2",
+    "vue-style-loader": "^4.1.2"
+  }
+}
