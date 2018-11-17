@@ -14,7 +14,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ["mocha", "sinon-chai", "phantomjs-shim"],
+    frameworks: ["jasmine"],
 
     // list of files / patterns to load in the browser
     //测试脚本的位置
@@ -35,7 +35,7 @@ module.exports = function(config) {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ["spec", "coverage"],
+    reporters: ["progress", "coverage-istanbul"],
 
     // web server port
     port: 9876,
@@ -64,9 +64,10 @@ module.exports = function(config) {
     concurrency: Infinity,
 
     //覆盖率报告的格式和位置
-    coverageReporter: {
-      dir: "tests/coverage",
-      reporters: [{ type: "lcov", subdir: "." }, { type: "text-summary" }]
+    coverageIstanbulReporter: {
+      reports: ["text-summary", "html"],
+      fixWebpackSourcePaths: true,
+      dir: "tests/coverage-istanbul"
     },
     client: {
       captureConsole: true
