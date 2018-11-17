@@ -1,6 +1,6 @@
 module.exports = api => {
   // 带命名空间的版本
-  /*const {
+  const {
     setSharedData,
     getSharedData,
     removeSharedData,
@@ -10,15 +10,15 @@ module.exports = api => {
 
   function addQuotes(text) {
     return '\\\"' + (text) + '\\\"';
-  }*/
+  }
 
   String.prototype.startWith = function(str){     
-    var reg = new RegExp("^"+str);     
+    var reg = new RegExp("^" + str);     
     return reg.test(this);        
   }  
   
   String.prototype.endWith = function(str){     
-    var reg = new RegExp(str+"$");     
+    var reg = new RegExp(str + "$");     
     return reg.test(this);        
   }
 
@@ -118,14 +118,14 @@ module.exports = api => {
             value: 'custom'
           }
         ],
-        description: 'org.vue.st.karma.tasks.browser.description',
+        description: 'org.vue.st.karma.tasks.conf.description',
         group: 'org.vue.st.karma.tasks.group.recommended'
       },
       {
         name: 'customconf',
         type: 'input',
         default: '',
-        description: 'org.vue.st.karma.tasks.custombrowser.description',
+        description: 'org.vue.st.karma.tasks.customconf.description',
         group: 'org.vue.st.karma.tasks.group.recommended'
       }
     ],

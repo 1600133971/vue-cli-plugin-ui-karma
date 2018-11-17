@@ -21,14 +21,14 @@ module.exports = (api, options) => {
       info(`Starting unit tests...`);
       //info(`args: ` + JSON.stringify(args));
       //info(`rawArgs: ` + rawArgs);
-      const testCafeArgs = [
+      const karmaArgs = [
         `start`,
         args.file
       ].filter(v => v);
-      info(`testcafe ` + testCafeArgs.join(" "));
+      info(`karma ` + karmaArgs.join(" "));
       const execa = require("execa");
-      const testCafeBinPath = require.resolve("karma/bin/karma");
-      const runner = execa(testCafeBinPath, testCafeArgs, { stdio: "inherit" });
+      const karmaBinPath = require.resolve("karma/bin/karma");
+      const runner = execa(karmaBinPath, karmaArgs, { stdio: "inherit" });
       if (server) {
         runner.on("exit", () => server.close());
         runner.on("error", () => server.close());
@@ -62,9 +62,9 @@ module.exports = (api, options) => {
         commandOptions
       ),
       details:
-        `All Karma CLI options are also supported:\n` +
+        `All Karma configuration options are also supported:\n` +
         chalk.yellow(
-          `https://devexpress.github.io/testcafe/documentation/using-testcafe/command-line-interface.html`
+          `http://karma-runner.github.io/3.0/config/configuration-file.html`
         )
     },
     (args, rawArgs) => run(args, rawArgs)
