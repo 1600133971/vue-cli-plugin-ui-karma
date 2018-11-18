@@ -14,40 +14,33 @@ module.exports = (api, options) => {
     removeArg(rawArgs, "mode");
     removeArg(rawArgs, "file");
 
-    const serverPromise = api.service.run("serve", { mode: args.mode || "production" });
+    const { info } = require("@vue/cli-shared-utils");
+    info(`Starting unit tests with Karma...`);
+    //info(`args: ` + JSON.stringify(args));
+    //info(`rawArgs: ` + rawArgs);
+    const karmaArgs = [
+      `start`,
+      args.file
+    ].filter(v => v);
+    info(`karma ` + karmaArgs.join(" "));
+    const execa = require("execa");
+    const karmaBinPath = require.resolve("karma/bin/karma");
+    const runner = execa(karmaBinPath, karmaArgs, { stdio: "inherit" });
+    runner.on("exit", () => {});
+    runner.on("error", () => {});
 
-    return serverPromise.then(({ url, server }) => {
-      const { info } = require("@vue/cli-shared-utils");
-      info(`Starting unit tests...`);
-      //info(`args: ` + JSON.stringify(args));
-      //info(`rawArgs: ` + rawArgs);
-      const karmaArgs = [
-        `start`,
-        args.file
-      ].filter(v => v);
-      info(`karma ` + karmaArgs.join(" "));
-      const execa = require("execa");
-      const karmaBinPath = require.resolve("karma/bin/karma");
-      const runner = execa(karmaBinPath, karmaArgs, { stdio: "inherit" });
-      if (server) {
-        runner.on("exit", () => server.close());
-        runner.on("error", () => server.close());
-      }
+    if (process.env.VUE_CLI_TEST) {
+      runner.on("exit", code => {
+        process.exit(code);
+      });
+    }
 
-      if (process.env.VUE_CLI_TEST) {
-        runner.on("exit", code => {
-          process.exit(code);
-        });
-      }
-
-      return runner;
-    });
+    return runner;
   }
 
   const commandOptions = {
-    "--mode":          "specify the mode the dev server should run in. (default: development)",
     "start":           "run unit tests against auto-starting karma server",
-    "karma.conf.*.js": "runs with a specific karma conf file"
+    "karma.conf.*.js": "runs with a specific karma conf file. (default: karma.conf.js)"
   };
 
   api.registerCommand(

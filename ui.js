@@ -71,28 +71,6 @@ module.exports = api => {
     link: 'https://github.com/1600133971/vue-cli-plugin-ui-karma#injected-commands',
     prompts: [
       {
-        name: 'mode',
-        type: 'list',
-        default: 'development',
-        choices: [
-          {
-            name: 'development',
-            value: 'development'
-          },
-          {
-            name: 'production',
-            value: 'production'
-          },
-          {
-            name: 'test',
-            value: 'test'
-          }
-        ],
-        message: '--mode',
-        description: 'org.vue.st.karma.tasks.mode.description',
-        group: 'org.vue.st.karma.tasks.group.general'
-      },
-      {
         name: 'conf',
         type: 'list',
         default: 'karma.conf.js',
@@ -134,7 +112,6 @@ module.exports = api => {
     onBeforeRun: ({ answers, args }) => {
       // answers: 配置界面获取参数
       // args: 参数整理输出
-      if (answers.mode) args.push('--mode', answers.mode);
       args.push('--file', answers.conf !== "custom" ? answers.conf : answers.customconf);
     },
     // 任务运行之后立即执行
