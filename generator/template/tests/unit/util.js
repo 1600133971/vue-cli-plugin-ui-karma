@@ -8,10 +8,8 @@ let id = 0;
 
 const createElm = function() {
   const elm = document.createElement("div");
-
   elm.id = "app" + ++id;
   document.body.appendChild(elm);
-
   return elm;
 };
 
@@ -73,10 +71,8 @@ export function triggerEvent(elm, name, ...opts) {
     eventName = "HTMLEvents";
   }
   const evt = document.createEvent(eventName);
-
   evt.initEvent(name, ...opts);
   elm.dispatchEvent ? elm.dispatchEvent(evt) : elm.fireEvent("on" + name, evt);
-
   return elm;
 }
 
@@ -88,7 +84,6 @@ export function triggerEvent(elm, name, ...opts) {
 export function triggerClick(elm, ...opts) {
   triggerEvent(elm, "mousedown", ...opts);
   triggerEvent(elm, "mouseup", ...opts);
-
   return elm;
 }
 
