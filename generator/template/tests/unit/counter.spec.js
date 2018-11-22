@@ -1,6 +1,7 @@
 import { mount } from "@vue/test-utils";
 import Counter from "@/components/Counter.vue";
 import Vue from "vue";
+import { expect } from "chai";
 
 describe("Counter.vue", () => {
   const wrapper = mount(Counter);

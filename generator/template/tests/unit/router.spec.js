@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
 import About from "@/views/About.vue";
 import router from "@/router.js";
+import { expect } from "chai";
 
 describe("router.js", () => {
   const localVue = createLocalVue();

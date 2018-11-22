@@ -1,6 +1,7 @@
 import { mount } from "@vue/test-utils";
 import App from "@/App";
 import HelloWorld from "@/components/HelloWorld.vue";
+import { expect } from "chai";
 
 describe("App.vue", () => {
   let wrapper, vm;
