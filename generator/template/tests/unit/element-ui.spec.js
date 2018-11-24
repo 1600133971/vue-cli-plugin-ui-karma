@@ -6,7 +6,7 @@ import {
   triggerEvent,
   triggerClick,
   triggerKeyDown
-} from "./util";
+} from "./element-ui.util";
 import Button from "element-ui/packages/button";
 import { expect } from "chai";
 

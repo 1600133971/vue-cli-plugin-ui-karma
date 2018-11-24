@@ -29,6 +29,9 @@
             },
             "customconf": {
               "description": "Specify custom karma conf file(conf selects 'custom' option)"
+            },
+            "views": {
+              "label": "Statistics"
             }
           }
         }

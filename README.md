@@ -36,7 +36,7 @@ We've pre-configured Karma to place most of the unit testing related files under
 npm install -D vue-cli-plugin-ui-karma
 ```
 
-## For Karma Statistics in vue-cli 3.x ui, please install vue-cli-addon-ui-karma in npm's global mode.[Unfinished, coming soon...]
+## For Karma Statistics in vue-cli 3.x ui, please install vue-cli-addon-ui-karma in npm's global mode.
 
 ``` sh
 npm install -g vue-cli-addon-ui-karma

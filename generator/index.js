@@ -7,7 +7,7 @@ module.exports = (api, _, __, invoking) => {
     devDependencies: {
     },
     scripts: {
-      "karma": "vue-cli-service karma"
+      "karma": "vue-cli-service karma --file karma.conf.js"
     }
   })
 
@@ -39,7 +39,7 @@ const applyElement = module.exports.applyElement = (api, invoking) => {
     devDependencies: {
     }
   })
-  // inject testcafe types to tsconfig.json
+
   if (invoking) {
     api.render(files => {
     })

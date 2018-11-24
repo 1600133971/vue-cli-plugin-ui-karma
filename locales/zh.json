@@ -29,6 +29,9 @@
             },
             "customconf": {
               "description": "指定定制karma配置文件(指定karma配置文件'custom'选项)"
+            },
+            "views": {
+              "label": "统计"
             }
           }
         }

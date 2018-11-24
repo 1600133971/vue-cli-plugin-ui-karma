@@ -22,6 +22,28 @@ module.exports = api => {
     return reg.test(this);        
   }
 
+  Date.prototype.format = function(format) {
+    var date = {
+       "M+": this.getMonth() + 1,
+       "d+": this.getDate(),
+       "h+": this.getHours(),
+       "m+": this.getMinutes(),
+       "s+": this.getSeconds(),
+       "q+": Math.floor((this.getMonth() + 3) / 3),
+       "S+": this.getMilliseconds()
+    };
+    if (/(y+)/i.test(format)) {
+       format = format.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
+    }
+    for (var k in date) {
+       if (new RegExp("(" + k + ")").test(format)) {
+           format = format.replace(RegExp.$1, RegExp.$1.length == 1
+              ? date[k] : ("00" + date[k]).substr(("" + date[k]).length));
+       }
+    }
+    return format;
+  }
+
   api.describeConfig({
     id: 'org.vue.st.karma.configuration',
     name: 'Karma',
@@ -120,69 +142,68 @@ module.exports = api => {
       // cwd: 进程所在目录
 
       // build-status
-      /*api.setSharedData('build-status.status', 'Processing');
+      api.setSharedData('build-status.status', 'Processing');
       api.setSharedData('build-status.total', '...');
       api.setSharedData('build-status.skipped', '...');
       api.setSharedData('build-status.processed', '...');
       api.setSharedData('build-status.passed', '...');
       api.setSharedData('build-status.failed', '...');
-      api.setSharedData('build-status.fixtures', '...');
-      api.setSharedData('build-status.warnings', '...');
       api.setSharedData('build-status.startTime', '...');
       api.setSharedData('build-status.endTime', '...');
       api.setSharedData('build-status.duration', '...');
-      api.setSharedData('build-status.userAgents', '...');*/
+      api.setSharedData('build-status.userAgents', '...');
 
       // build-progress
-      /*api.setSharedData('build-progress.status', 'Compiling');
+      api.setSharedData('build-progress.status', 'Compiling');
       api.setSharedData('build-progress.progress', '0.4');
-      api.setSharedData('build-progress.operations', 'e2e test is started');*/
+      api.setSharedData('build-progress.operations', 'unit test is started');
     },
     onExit: async ({ args, child, cwd, code, signal }) => {
       // code: 退出码
       // signal: 可能会被使用的杀进程信号
-      /*var fs = require('fs');
-      var json = JSON.parse(fs.readFileSync("./tests/e2e/st.json"));*/
+      var fs = require('fs');
+      var json = JSON.parse(fs.readFileSync("./report/karma-result.json"));
+      var newDate = new Date();
 
       // build-status
-      /*api.setSharedData('build-status.status', 'Finished');
-      api.setSharedData('build-status.total', json.total.toString());
-      api.setSharedData('build-status.skipped', json.skipped.toString());
-      api.setSharedData('build-status.processed', json.processed.toString());
-      api.setSharedData('build-status.passed', json.passed.toString());
-      api.setSharedData('build-status.failed', json.failed.toString());
-      api.setSharedData('build-status.fixtures', json.fixtures.length.toString());
-      api.setSharedData('build-status.warnings', json.warnings.length.toString());
-      api.setSharedData('build-status.startTime', json.startTime);
-      api.setSharedData('build-status.endTime', json.endTime);
-      api.setSharedData('build-status.duration', json.duration);
-      api.setSharedData('build-status.userAgents', json.userAgents.join(","));*/
+      api.setSharedData('build-status.status', 'Finished');
+      api.setSharedData('build-status.total', json.browsers[0].browser.lastResult.total.toString());
+      api.setSharedData('build-status.skipped', json.browsers[0].browser.lastResult.skipped.toString());
+      api.setSharedData('build-status.processed', (json.browsers[0].browser.lastResult.total - json.browsers[0].browser.lastResult.skipped).toString());
+      api.setSharedData('build-status.passed', json.browsers[0].browser.lastResult.success.toString());
+      api.setSharedData('build-status.failed', (json.browsers[0].browser.lastResult.total - json.browsers[0].browser.lastResult.skipped - json.browsers[0].browser.lastResult.success).toString());
+      newDate.setTime(json.browsers[0].browser.lastResult.startTime);
+      api.setSharedData('build-status.startTime', newDate.format('yyyy-MM-dd h:m:s:S'));
+      newDate.setTime(json.browsers[0].browser.lastResult.startTime + json.browsers[0].browser.lastResult.totalTime);
+      api.setSharedData('build-status.endTime', newDate.format('yyyy-MM-dd h:m:s:S'));
+      api.setSharedData('build-status.duration', json.browsers[0].browser.lastResult.totalTime);
+      api.setSharedData('build-status.userAgents', json.browsers[0].browser.name);
 
       // build-progress
-      /*api.setSharedData('build-progress.status', code === 0 ? 'Success' : 'Failed');
+      api.setSharedData('build-progress.status', code === 0 ? 'Success' : 'Failed');
       api.setSharedData('build-progress.progress', '1');
-      api.setSharedData('build-progress.operations', 'e2e test is finished');*/
+      api.setSharedData('build-progress.operations', 'unit test is finished');
     },
     // 额外的视图(仪表盘)
     // 默认情况下，这里是展示终端输出的 `output` 视图
-    /*views: [
+    views: [
       {
         id: 'org.vue.st.karma.client-addon',
         label: 'org.vue.st.karma.tasks.views.label',
         icon: 'dashboard',
         component: 'org.vue.st.karma.components.statistics'
       }
-    ],*/
+    ],
     // 展示任务详情时默认选择的视图 (默认是 `output`)
     //defaultView: 'org.vue.st.karma.client-addon'
   })
 
-  /*api.addClientAddon({
+  api.addClientAddon({
     id: 'org.vue.st.karma.client-addon',
     // 包含构建出来的 JS 文件的文件夹
     path: 'vue-cli-addon-ui-karma/dist'
     //url: 'http://localhost:8042/index.js'
-  })*/
+  })
 
   // Hooks
   api.onProjectOpen((project, previousProject) => {
@@ -201,23 +222,21 @@ module.exports = api => {
     //console.log('onTaskOpen', task.id)
     if (task.id.endWith(':karma')) {
       // build-status
-      /*api.setSharedData('build-status.status', 'Idle');
+      api.setSharedData('build-status.status', 'Idle');
       api.setSharedData('build-status.total', '...');
       api.setSharedData('build-status.skipped', '...');
       api.setSharedData('build-status.processed', '...');
       api.setSharedData('build-status.passed', '...');
       api.setSharedData('build-status.failed', '...');
-      api.setSharedData('build-status.fixtures', '...');
-      api.setSharedData('build-status.warnings', '...');
       api.setSharedData('build-status.startTime', '...');
       api.setSharedData('build-status.endTime', '...');
       api.setSharedData('build-status.duration', '...');
-      api.setSharedData('build-status.userAgents', '...');*/
+      api.setSharedData('build-status.userAgents', '...');
 
       // build-progress
-      /*api.setSharedData('build-progress.status', 'Idle');
+      api.setSharedData('build-progress.status', 'Idle');
       api.setSharedData('build-progress.progress', '0');
-      api.setSharedData('build-progress.operations', '...');*/
+      api.setSharedData('build-progress.operations', '...');
     }
   })
 

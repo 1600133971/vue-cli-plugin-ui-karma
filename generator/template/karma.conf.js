@@ -17,9 +17,8 @@ module.exports = function(config) {
     frameworks: ["mocha", "sinon-chai", "phantomjs-shim"],
 
     // list of files / patterns to load in the browser
-    //测试脚本的位置
     //files: ["tests/unit/*.spec.js"],
-    files: ["tests/unit/index.js"],
+    files: ["./karma.files.js"],
 
     // list of files / patterns to exclude
     exclude: [],
@@ -27,15 +26,34 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      //使用webpack对脚本进行处理
       //"tests/unit/*.spec.js": ["webpack"]
-      "tests/unit/index.js": ["webpack"]
+      "./karma.files.js": ["webpack"]
     },
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ["spec", "coverage"],
+    reporters: ["spec", "coverage", "json-result", "junit"],
+
+    coverageReporter: {
+      dir: "coverage",
+      reporters: [{ type: "lcov", subdir: "." }, { type: "text-summary" }]
+    },
+
+    jsonResultReporter: {
+      outputFile: "report/karma-result.json",
+      isSynchronous: true
+    },
+
+    junitReporter: {
+      outputDir: "report", // results will be saved as $outputDir/$browserName.xml
+      outputFile: undefined, // if included, results will be saved as $outputDir/$browserName/$outputFile
+      suite: "", // suite will become the package name attribute in xml testsuite element
+      useBrowserName: true, // add browser name to report and classes names
+      nameFormatter: undefined, // function (browser, result) to customize the name attribute in xml testcase element
+      classNameFormatter: undefined, // function (browser, result) to customize the classname attribute in xml testcase element
+      properties: {} // key value pair of properties to add to the <properties> section of the report
+    },
 
     // web server port
     port: 9876,
@@ -48,7 +66,6 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
     // enable / disable watching file and executing tests whenever any file changes
-    //监听测试用例文件的修改
     autoWatch: true,
 
     // start these browsers
@@ -63,11 +80,6 @@ module.exports = function(config) {
     // how many browser should be started simultaneous
     concurrency: Infinity,
 
-    //覆盖率报告的格式和位置
-    coverageReporter: {
-      dir: "tests/coverage",
-      reporters: [{ type: "lcov", subdir: "." }, { type: "text-summary" }]
-    },
     client: {
       captureConsole: true
     },
