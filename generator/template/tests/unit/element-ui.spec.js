@@ -31,7 +31,7 @@ describe("Element-UI", () => {
     let buttonElm = vm.$el;
     expect(buttonElm.classList.contains("el-button--primary")).to.be.false;
   });
-  it("Button create", () => {
+  it("Button create #4", () => {
     vm = createTest(
       Button,
       {
@@ -92,21 +92,21 @@ describe("Element-UI", () => {
   });
   it("Tooltip create", done => {
     vm = createVue(`
-      <el-tooltip ref="tooltip" content="提示文字">
+      <el-tooltip ref="tooltip" content="tooltip text">
         <button>click</button>
       </el-tooltip>`);
 
     vm.$nextTick(_ => {
       expect(vm.$refs.tooltip.popperVM.$el).to.have.property(
         "textContent",
-        "提示文字"
+        "tooltip text"
       );
       done();
     });
   });
   it("Tooltip reference element focus", done => {
     vm = createVue(`
-    <el-tooltip ref="tooltip" content="提示文字">
+    <el-tooltip ref="tooltip" content="tooltip text">
       <button>click</button>
     </el-tooltip>`);
     const tooltip = vm.$refs.tooltip;
@@ -130,14 +130,14 @@ describe("Element-UI", () => {
         template: `
         <el-dropdown ref="dropdown">
           <span class="el-dropdown-link">
-            下拉菜单<i class="el-icon-caret-bottom el-icon-right"></i>
+          dropdown menu<i class="el-icon-caret-bottom el-icon-right"></i>
           </span>
           <el-dropdown-menu slot="dropdown" class="dropdown-test-creat">
-            <el-dropdown-item>黄金糕</el-dropdown-item>
-            <el-dropdown-item>狮子头</el-dropdown-item>
-            <el-dropdown-item>螺蛳粉</el-dropdown-item>
-            <el-dropdown-item>双皮奶</el-dropdown-item>
-            <el-dropdown-item>蚵仔煎</el-dropdown-item>
+            <el-dropdown-item>Golden cake</el-dropdown-item>
+            <el-dropdown-item>Yanchen Qiao Ball</el-dropdown-item>
+            <el-dropdown-item>River snail rice noodles</el-dropdown-item>
+            <el-dropdown-item>Double-Layer Steamed Milk Custard</el-dropdown-item>
+            <el-dropdown-item>Oyster omelette</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       `
@@ -187,14 +187,14 @@ describe("Element-UI", () => {
         template: `
         <el-dropdown ref="dropdown">
           <span class="el-dropdown-link">
-            下拉菜单<i class="el-icon-caret-bottom el-icon-right"></i>
+            dropdown menu<i class="el-icon-caret-bottom el-icon-right"></i>
           </span>
           <el-dropdown-menu slot="dropdown" class="dropdown-test-creat">
-            <el-dropdown-item>黄金糕</el-dropdown-item>
-            <el-dropdown-item>狮子头</el-dropdown-item>
-            <el-dropdown-item>螺蛳粉</el-dropdown-item>
-            <el-dropdown-item>双皮奶</el-dropdown-item>
-            <el-dropdown-item>蚵仔煎</el-dropdown-item>
+            <el-dropdown-item>Golden cake</el-dropdown-item>
+            <el-dropdown-item>Yanchen Qiao Ball</el-dropdown-item>
+            <el-dropdown-item>River snail rice noodles</el-dropdown-item>
+            <el-dropdown-item>Double-Layer Steamed Milk Custard</el-dropdown-item>
+            <el-dropdown-item>Oyster omelette</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       `

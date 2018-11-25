@@ -40,6 +40,7 @@ module.exports = function(config) {
       reporters: [{ type: "lcov", subdir: "." }, { type: "text-summary" }]
     },
 
+    // !!DONOT delete this reporter, or vue-cli-addon-ui-karma doesnot work
     jsonResultReporter: {
       outputFile: "report/karma-result.json",
       isSynchronous: true

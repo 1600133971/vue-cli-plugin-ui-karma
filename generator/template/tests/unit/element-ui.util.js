@@ -14,7 +14,7 @@ const createElm = function() {
 };
 
 /**
- * 回收 vm
+ * destroy vm
  * @param  {Object} vm
  */
 export function destroyVM(vm) {
@@ -23,9 +23,9 @@ export function destroyVM(vm) {
 }
 
 /**
- * 创建一个 Vue 的实例对象
- * @param  {Object|String}  Compo   组件配置，可直接传 template
- * @param  {Boolean=false} mounted 是否添加到 DOM 上
+ * create a Vue object
+ * @param  {Object|String}  Compo   component configuration, may carry template directly
+ * @param  {Boolean=false} mounted if add it to DOM or not
  * @return {Object} vm
  */
 export function createVue(Compo, mounted = false) {
@@ -36,11 +36,11 @@ export function createVue(Compo, mounted = false) {
 }
 
 /**
- * 创建一个测试组件实例
+ * create a testing component object
  * @link http://vuejs.org/guide/unit-testing.html#Writing-Testable-Components
- * @param  {Object}  Compo          - 组件对象
- * @param  {Object}  propsData      - props 数据
- * @param  {Boolean=false} mounted  - 是否添加到 DOM 上
+ * @param  {Object}  Compo          - component object
+ * @param  {Object}  propsData      - props data
+ * @param  {Boolean=false} mounted  - if add it to DOM or not
  * @return {Object} vm
  */
 export function createTest(Compo, propsData = {}, mounted = false) {
@@ -54,8 +54,8 @@ export function createTest(Compo, propsData = {}, mounted = false) {
 }
 
 /**
- * 触发一个事件
- * mouseenter, mouseleave, mouseover, keyup, change, click 等
+ * trigger an event
+ * mouseenter, mouseleave, mouseover, keyup, change, click etc.
  * @param  {Element} elm
  * @param  {String} name
  * @param  {*} opts
@@ -77,7 +77,7 @@ export function triggerEvent(elm, name, ...opts) {
 }
 
 /**
- * 触发 “mouseup” 和 “mousedown” 事件
+ * trigger “mouseup” & “mousedown” event
  * @param {Element} elm
  * @param {*} opts
  */
@@ -88,7 +88,7 @@ export function triggerClick(elm, ...opts) {
 }
 
 /**
- * 触发 keydown 事件
+ * trigger keydown event
  * @param {Element} elm
  * @param {keyCode} int
  */

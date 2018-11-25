@@ -14,7 +14,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ["jasmine"],
+    frameworks: ["jasmine", "sinon-chai"],
 
     // list of files / patterns to load in the browser
     //files: ["tests/unit/*.spec.js"],
@@ -41,6 +41,7 @@ module.exports = function(config) {
       dir: "coverage-istanbul"
     },
 
+    // !!DONOT delete this reporter, or vue-cli-addon-ui-karma doesnot work
     jsonResultReporter: {
       outputFile: "report/karma-result.json",
       isSynchronous: true

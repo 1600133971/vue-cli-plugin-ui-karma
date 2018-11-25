@@ -7,7 +7,7 @@ This adds unit testing support using [Karma](http://karma-runner.github.io/lates
 ## Features
 
 ### Implemented
-- Run unit tests in headless chrome with `vue-cli-service karma`.
+- Run unit tests in headless chrome(default) with `vue-cli-service karma --file karma.conf.js`.
 - Add customizable karma conf files for vue project.
 - Add demo unit tests for normal vue project and example element-ui unit tests for vue project with element-ui.
 
