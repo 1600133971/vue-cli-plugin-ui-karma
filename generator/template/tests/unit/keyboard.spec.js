@@ -28,11 +28,11 @@ describe("Key event tests", () => {
     expect(wrapper.vm.quantity).to.equal(0);
   });
 
-  it('Magic character "a" sets quantity to 13', () => {
+  /*it('Magic character "a" sets quantity to 13', () => {
     const wrapper = mount(QuantityComponent);
     wrapper.trigger("keydown", {
       which: 65
     });
     expect(wrapper.vm.quantity).to.equal(13);
-  });
+  });*/
 });

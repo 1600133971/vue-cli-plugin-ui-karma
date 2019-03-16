@@ -36,9 +36,9 @@ export default {
       if (e.keyCode === KEY_UP) {
         this.increment();
       }
-      if (e.which === CHAR_A) {
+      /*if (e.which === CHAR_A) {
         this.quantity = 13;
-      }
+      }*/
     }
   },
 

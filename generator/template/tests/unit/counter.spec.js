@@ -29,15 +29,15 @@ describe("Counter #2", () => {
   });
 
   // this will not be caught
-  it("will time out", done => {
+  /*it("will time out", done => {
     Vue.nextTick(() => {
       expect(true).to.equal(true);
       done();
     });
-  });
+  });*/
 
   // the two following tests will work as expected
-  it("will catch the error using done", done => {
+  /*it("will catch the error using done", done => {
     Vue.config.errorHandler = done;
     Vue.nextTick(() => {
       expect(true).to.equal(true);
@@ -49,5 +49,5 @@ describe("Counter #2", () => {
     return Vue.nextTick().then(function() {
       expect(true).to.equal(true);
     });
-  });
+  });*/
 });
