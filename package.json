@@ -2,7 +2,7 @@
   "name": "vue-cli-plugin-ui-karma",
   "description": "vue-cli 3.x ui plugin to add Karma to your Vue Project",
   "author": "1600133971",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "main": "index.js",
   "license": "MIT",
   "repository": {
@@ -32,6 +32,8 @@
     "istanbul-instrumenter-loader": "^3.0.1",
     "url-loader": "^1.1.2",
     "vue-loader": "^15.4.2",
-    "vue-style-loader": "^4.1.2"
+    "vue-style-loader": "^4.1.2",
+    "chai": "^4.2.0",
+    "@vue/test-utils": "^1.0.0-beta.29"
   }
 }

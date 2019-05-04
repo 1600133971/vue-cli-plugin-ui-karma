@@ -1,13 +1,13 @@
 import { mount } from "@vue/test-utils";
-import App from "@/App";
+import Home from "@/views/Home.vue";
 import HelloWorld from "@/components/HelloWorld.vue";
 import { expect } from "chai";
 
-describe("App.vue", () => {
+describe("Home.vue", () => {
   let wrapper, vm;
 
   beforeEach(() => {
-    wrapper = mount(App);
+    wrapper = mount(Home);
     vm = wrapper.vm;
   });
 
